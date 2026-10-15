@@ -125,6 +125,7 @@ function renderState(){
   $("roleTag").textContent=state.players.find(p=>p.id===state.judgeId)?.nickname===myNickname()?"YOU'RE THE JUDGE":state.judgeId?"JUDGE: "+(state.players.find(p=>p.id===state.judgeId)?.nickname||""):"ROBOT JUDGE 🤖";
   if(state.status==="finished"){renderFinished();return;}
   if(state.phase==="submit"){
+    renderHand(); // Refresh card buttons using the NEW round state, not the previous reveal.
     $("submitPanel").classList.remove("hidden");$("waitingPanel").classList.remove("hidden");
     const isJudge=state.judgeId===myId;
     $("submitPanel").classList.toggle("hidden",isJudge);
@@ -159,7 +160,7 @@ function renderLobby(){
 }
 function renderHand(){
   if(!$("handCards"))return;$("handCards").innerHTML="";
-  hand.forEach((card,i)=>{const b=document.createElement("button");b.className="answer-card"+(selectedCard===card?" selected":"");b.textContent=card;b.disabled=!!(state&&state.submissions.some(s=>s.id===myId));b.onclick=()=>{selectedCard=card;renderHand();$("submitBtn").disabled=false};$("handCards").append(b)});
+  hand.forEach((card,i)=>{const b=document.createElement("button");b.className="answer-card"+(selectedCard===card?" selected":"");b.textContent=card;b.disabled=!!(state&&state.phase==="submit"&&state.submissions.some(s=>s.id===myId));b.onclick=()=>{selectedCard=card;renderHand();$("submitBtn").disabled=false};$("handCards").append(b)});
 }
 $("submitBtn").onclick=()=>{if(!selectedCard)return;socket.emit("submitCard",{code:roomCode,answer:selectedCard});$("submitBtn").disabled=true;selectedCard=null;};
 function renderLiveSubmissions(){
