@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Silly Shuffle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#25243a;--muted:#73728a;--cream:#fffaf0;--paper:#fff;--purple:#7157d9;--purple2:#efeaff;--coral:#ff786d;--yellow:#ffd76a;--mint:#b9efdb;--line:#ebe7f2;--shadow:0 12px 36px #32215b12}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#f0eaff 0,transparent 34%),radial-gradient(ellipse at 100% 80%,#fff0df 0,transparent 32%),var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;min-height:100vh}
+button,input{font:inherit}button{border:0;cursor:pointer;font-weight:800;transition:transform .12s,filter .12s}button:hover{filter:brightness(1.03);transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.wrap{width:min(1040px,calc(100% - 32px));margin:auto;padding:24px 0 50px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:12px}.logo{width:50px;height:50px;display:grid;place-items:center;background:var(--yellow);border-radius:16px;font-size:28px;box-shadow:0 5px 0 #e7b94b}.brand h1{font:700 25px Fredoka,sans-serif;letter-spacing:-.5px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.pill{background:white;border:1px solid var(--line);border-radius:99px;padding:9px 13px;font-size:12px;font-weight:800}
+main{max-width:780px;margin:auto}.hero{text-align:center;padding:22px 0 24px}.eyebrow{display:inline-block;background:var(--mint);border-radius:99px;padding:7px 12px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase}.hero h2{font:700 clamp(36px,7vw,60px)/1.05 Fredoka,sans-serif;letter-spacing:-1.5px;margin:18px 0 12px}.hero h2 span{color:var(--purple)}.hero p{max-width:510px;margin:0 auto;color:var(--muted);line-height:1.65}.panel{background:#ffffffd9;border:1px solid #e9e3f1;border-radius:25px;padding:clamp(18px,4vw,30px);box-shadow:var(--shadow);margin-bottom:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field-label{display:block;font-size:12px;font-weight:800;margin:0 0 8px}.input{width:100%;padding:14px 15px;border:1px solid var(--line);border-radius:13px;background:white;outline:none;color:var(--ink)}.input:focus{border-color:var(--purple);box-shadow:0 0 0 3px #7157d91a}.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mode{padding:13px 10px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:15px;color:var(--ink)}.mode.active{border:2px solid var(--purple);background:var(--purple2);padding:12px 9px}.mode strong{display:block;font-size:13px}.mode small{display:block;color:var(--muted);font-size:11px;line-height:1.35;margin-top:4px}.actions{display:flex;gap:10px;margin-top:17px}.btn{padding:14px 18px;border-radius:14px;background:var(--purple);color:white;box-shadow:0 4px 0 #5540b0}.btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}.btn.coral{background:var(--coral);box-shadow:0 4px 0 #d85a52}.btn.full{width:100%}.tiny{font-size:12px;color:var(--muted);line-height:1.55}.error{display:none;background:#fff0ed;color:#b83c32;border-radius:12px;padding:11px 13px;margin-top:12px;font-size:13px;font-weight:700}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.section-head h2{font:700 28px Fredoka,sans-serif;margin:0}.code{font:700 20px Fredoka,sans-serif;letter-spacing:3px;background:var(--yellow);padding:9px 13px;border-radius:12px;cursor:pointer}.players{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.player{background:white;border:1px solid var(--line);border-radius:14px;padding:13px;display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:var(--purple2);font-size:21px}.player strong{display:block;font-size:13px}.player small{font-size:11px;color:var(--muted)}.host-tag{margin-left:auto;color:var(--purple);font-size:10px;font-weight:800}.status{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:12px;font-weight:700}.dot{width:8px;height:8px;border-radius:50%;background:#53c89b}.prompt-card{background:var(--purple);color:white;border-radius:24px;padding:25px 23px;text-align:center;box-shadow:0 6px 0 #5540b0;margin-bottom:16px}.prompt-card .label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;opacity:.8}.prompt-card h2{font:600 clamp(25px,5vw,37px)/1.22 Fredoka,sans-serif;margin:12px auto 0;max-width:650px}.round-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:12px}.round-row strong{font-size:13px}.tag{font-size:11px;font-weight:800;border-radius:99px;padding:7px 10px;background:#fff;color:var(--purple)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.answer-card{min-height:100px;text-align:left;padding:15px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 3px 0 #e9e4f0;color:var(--ink);font:600 16px/1.3 Fredoka,sans-serif}.answer-card.selected{border:2px solid var(--purple);background:var(--purple2);box-shadow:0 3px 0 #c9bfff}.answer-card:disabled{opacity:.55}.submissions{display:grid;gap:10px;margin-top:14px}.submission{display:flex;align-items:center;gap:12px;padding:14px;background:white;border:1px solid var(--line);border-radius:15px}.submission .emoji{font-size:22px}.submission .answer{font:600 16px Fredoka,sans-serif;flex:1}.submission button{background:var(--mint);border-radius:11px;padding:10px 12px;color:var(--ink);font-size:12px}.submission.winner{border:2px solid #51bd94;background:#f2fff9}.notice{background:#fff5d9;border:1px solid #f6e3a8;border-radius:14px;padding:12px 14px;font-size:12px;color:#795c18;line-height:1.5;margin:12px 0}.score-list{display:grid;gap:9px}.score-row{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);padding:13px 15px;border-radius:14px}.rank{width:30px;height:30px;border-radius:10px;background:#f1eff8;display:grid;place-items:center;font-weight:800;font-size:13px}.score-name{flex:1;font-weight:800;font-size:13px}.score-points{font:700 21px Fredoka,sans-serif;color:var(--purple)}.winner-banner{text-align:center;padding:18px;background:#f0fff7;border:1px solid #ccefe0;border-radius:18px;margin-bottom:14px}.winner-banner .big{font-size:35px}.winner-banner h3{font:700 24px Fredoka,sans-serif;margin:5px 0}.winner-banner p{margin:4px 0;color:#39785f}.footer{text-align:center;font-size:11px;color:var(--muted);margin-top:24px}.hidden{display:none!important}.hand-label{font-size:12px;font-weight:800;margin:18px 0 10px}.small-btn{padding:9px 12px;border-radius:10px;background:#fff;border:1px solid var(--line);font-size:11px}.timer{font-size:12px;font-weight:800;color:var(--coral)}.end-screen{text-align:center;padding:25px 10px}.end-screen .trophy{font-size:55px}.end-screen h2{font:700 36px Fredoka,sans-serif;margin:8px 0}.end-screen p{color:var(--muted)}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.players{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.top{align-items:flex-start}.brand h1{font-size:22px}.pill{font-size:10px}.actions{flex-direction:column}.section-head h2{font-size:24px}.prompt-card{padding:22px 16px}.answer-card{min-height:90px;font-size:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">🎲</div><div><h1>The Silly Shuffle</h1><p>A tiny bit of nonsense. A whole lot of fun.</p></div></div>
+    <div class="pill">2–8 PLAYERS · FREE TO PLAY</div>
+  </header>
+  <main>
+    <section id="home">
+      <div class="hero"><div class="eyebrow">✨ The party starts here</div><h2>Play a card.<br><span>Make 'em giggle.</span></h2><p>A silly prompt, a handful of ridiculous answers, and your friends. Join from your own phone or laptop—no account needed.</p></div>
+      <div class="panel">
+        <div class="field-label">PICK YOUR GAME LENGTH</div>
+        <div class="modes">
+          <button class="mode" data-mode="quick"><strong>⚡ Quick Game</strong><small>Everyone judges once.</small></button>
+          <button class="mode" data-mode="party"><strong>🎉 Full Party</strong><small>Everyone judges twice.</small></button>
+          <button class="mode active" data-mode="custom"><strong>🪄 Custom</strong><small>Play until the host says stop.</small></button>
+        </div>
+        <div class="actions"><button id="createBtn" class="btn full">Create a room →</button></div>
+        <div style="height:1px;background:var(--line);margin:22px 0"></div>
+        <label class="field-label" for="joinCode">HAVE A ROOM CODE?</label>
+        <div class="actions" style="margin-top:0"><input id="joinCode" class="input" maxlength="6" placeholder="e.g. A1B2C3" autocomplete="off"><button id="joinBtn" class="btn secondary">Join room</button></div>
+        <div id="homeError" class="error"></div>
+      </div>
+      <p class="tiny" style="text-align:center">Friendly rule: keep it silly, keep it kind. No one gets eliminated. 💛</p>
+    </section>
+
+    <section id="lobby" class="hidden">
+      <div class="panel">
+        <div class="section-head"><div><div class="eyebrow">Room lobby</div><h2 style="margin-top:10px">Bring on the goofballs</h2></div><div class="code" id="roomCode" title="Copy room code">------</div></div>
+        <p class="tiny">Share this code with your friends. Everyone joins on their own device.</p>
+        <div class="section-head" style="margin-top:22px"><strong>Players <span id="playerCount">1</span>/8</strong><span class="status"><span class="dot"></span> Waiting in the lobby</span></div>
+        <div id="lobbyPlayers" class="players"></div>
+        <div id="lobbyNotice" class="notice">You need at least 2 players to start. The host can start whenever everyone's ready.</div>
+        <div id="hostControls"><button id="startBtn" class="btn full" disabled>Start the silliness →</button></div>
+        <div id="guestNotice" class="notice hidden">You're in! The host will start the game soon.</div>
+        <button id="leaveBtn" class="btn secondary full" style="margin-top:12px">Back to home</button>
+      </div>
+    </section>
+
+    <section id="game" class="hidden">
+      <div class="round-row"><strong id="roundLabel">ROUND 1</strong><span id="roleTag" class="tag">YOUR TURN</span><span id="timerLabel" class="timer"></span></div>
+      <div class="prompt-card"><div class="label">Today's silly prompt</div><h2 id="promptText">Loading nonsense…</h2></div>
+      <div id="submitPanel" class="panel">
+        <div class="section-head"><h2 style="font:700 22px Fredoka,sans-serif;margin:0">Pick your punchline</h2><span class="tag">YOUR HAND</span></div>
+        <p class="tiny">Choose the answer that makes you giggle. Your card is private until you play it.</p>
+        <div id="handCards" class="cards"></div>
+        <button id="submitBtn" class="btn full" style="margin-top:15px" disabled>Play this card →</button>
+        <div id="submitStatus" class="notice hidden">Card played! Watch the answers roll in below.</div>
+      </div>
+      <div id="waitingPanel" class="panel hidden">
+        <div class="section-head"><h2 style="font:700 22px Fredoka,sans-serif;margin:0">The answers are rolling in…</h2><span id="submissionCount" class="tag">0 / 0</span></div>
+        <p id="waitingText" class="tiny">Cards appear here as players submit. Names stay secret until the reveal!</p>
+        <div id="liveSubmissions" class="submissions"></div>
+      </div>
+      <div id="judgePanel" class="panel hidden">
+        <div class="section-head"><h2 style="font:700 22px Fredoka,sans-serif;margin:0">Choose the funniest!</h2><span class="tag">JUDGE'S CALL</span></div>
+        <p class="tiny">Tap your favorite answer. Trust your extremely silly instincts.</p>
+        <div id="judgeSubmissions" class="submissions"></div>
+      </div>
+      <div id="revealPanel" class="panel hidden">
+        <div id="winnerBanner" class="winner-banner"></div>
+        <div class="section-head"><h2 style="font:700 22px Fredoka,sans-serif;margin:0">The friendly leaderboard</h2><span class="tag">SCOREBOARD</span></div>
+        <div id="scoreboard" class="score-list"></div>
+        <div class="actions" id="roundActions"><button id="nextBtn" class="btn full">Next round →</button><button id="endBtn" class="btn coral">End game</button></div>
+        <p id="autoNextNote" class="tiny hidden">The host is choosing what happens next.</p>
+      </div>
+      <div id="finishedPanel" class="panel hidden">
+        <div class="end-screen"><div class="trophy">🏆</div><h2>That's a wrap!</h2><p id="finalMessage">A truly excellent display of nonsense.</p></div>
+        <div class="section-head"><h2 style="font:700 22px Fredoka,sans-serif;margin:0">Final scoreboard</h2></div>
+        <div id="finalScoreboard" class="score-list"></div>
+        <button id="homeBtn" class="btn full" style="margin-top:18px">Back to home</button>
+      </div>
+    </section>
+    <div class="footer">Made for friendly chaos-free fun · The Silly Shuffle</div>
+  </main>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+const socket = io();
+const $ = id => document.getElementById(id);
+let selectedMode = "custom", roomCode = null, myId = null, hand = [], selectedCard = null, state = null, tick = null, secondsLeft = 0;
+const emoji = ["🧇","🦆","🍌","🥔","🐸","🍕","🦝","🦙"];
+function show(section) { ["home","lobby","game"].forEach(id => $(id).classList.toggle("hidden", id !== section)); }
+function err(msg, where="homeError") { const el=$(where); el.textContent=msg; el.style.display="block"; }
+function clearErr(where="homeError") { $(where).style.display="none"; }
+function isHost() { return state && state.hostId === myId; }
+document.querySelectorAll(".mode").forEach(b=>b.addEventListener("click",()=>{selectedMode=b.dataset.mode;document.querySelectorAll(".mode").forEach(x=>x.classList.toggle("active",x===b));}));
+$("createBtn").onclick=()=>{clearErr();socket.emit("createRoom",{mode:selectedMode});};
+$("joinBtn").onclick=()=>{clearErr();const code=$("joinCode").value.trim().toUpperCase();if(code.length!==6)return err("Enter the 6-character room code.");socket.emit("joinRoom",{code});};
+$("joinCode").addEventListener("keydown",e=>{if(e.key==="Enter")$("joinBtn").click();});
+$("roomCode").onclick=async()=>{try{await navigator.clipboard.writeText(roomCode);$("roomCode").textContent="COPIED!";setTimeout(()=>$("roomCode").textContent=roomCode,900)}catch{}};
+$("startBtn").onclick=()=>socket.emit("startGame",{code:roomCode});
+$("leaveBtn").onclick=()=>{location.reload();};
+$("homeBtn").onclick=()=>{location.reload();};
+$("nextBtn").onclick=()=>socket.emit("nextRound",{code:roomCode});
+$("endBtn").onclick=()=>socket.emit("endGame",{code:roomCode});
+socket.on("connect",()=>{});
+socket.on("joined",d=>{roomCode=d.code;myId=d.id;$("roomCode").textContent=roomCode;show("lobby");});
+socket.on("privateHand",cards=>{hand=cards;renderHand();});
+socket.on("gameError",msg=>err(msg, state&&state.status==="lobby"?"lobbyError":"homeError"));
+socket.on("submissionAdded",d=>{renderLiveSubmissions();});
+socket.on("state",s=>{state=s; if(!roomCode)roomCode=s.code; renderState();});
+function renderState(){
+  if(!state)return;
+  if(state.status==="lobby"){show("lobby");renderLobby();return;}
+  show("game");
+  ["submitPanel","waitingPanel","judgePanel","revealPanel","finishedPanel"].forEach(id=>$(id).classList.add("hidden"));
+  $("roundLabel").textContent=state.status==="finished"?"GAME OVER":`ROUND ${state.roundNumber}${state.maxRounds?` / ${state.maxRounds}`:""}`;
+  $("promptText").textContent=state.prompt||"Ready for nonsense?";
+  $("roleTag").textContent=state.players.find(p=>p.id===state.judgeId)?.nickname===myNickname()?"YOU'RE THE JUDGE":state.judgeId?"JUDGE: "+(state.players.find(p=>p.id===state.judgeId)?.nickname||""):"ROBOT JUDGE 🤖";
+  if(state.status==="finished"){renderFinished();return;}
+  if(state.phase==="submit"){
+    $("submitPanel").classList.remove("hidden");$("waitingPanel").classList.remove("hidden");
+    const isJudge=state.judgeId===myId;
+    $("submitPanel").classList.toggle("hidden",isJudge);
+    $("waitingText").textContent=isJudge?"You're judging this round. Watch the anonymous answers arrive.":"Once you've played, you'll see everyone's answers appear here.";
+    $("submitStatus").classList.toggle("hidden",!state.submissions.some(s=>s.id===myId));
+    $("submitBtn").disabled=!selectedCard||state.submissions.some(s=>s.id===myId)||isJudge;
+    renderLiveSubmissions();
+    $("timerLabel").textContent=state.submittedCount+"/"+state.expectedCount+" in";
+  }else if(state.phase==="judge"){
+    $("waitingPanel").classList.remove("hidden");
+    $("judgePanel").classList.remove("hidden");
+    $("waitingText").textContent="Everyone has played. The judge is picking a favorite!";
+    $("judgeSubmissions").innerHTML="";
+    state.submissions.forEach(s=>{
+      const row=document.createElement("div");row.className="submission";
+      const text=document.createElement("div");text.className="answer";text.textContent=s.answer;row.append(text);
+      if(state.judgeId===myId){const b=document.createElement("button");b.textContent="Pick this!";b.onclick=()=>socket.emit("chooseWinner",{code:roomCode,submissionId:s.id});row.append(b);}
+      $("judgeSubmissions").append(row);
+    });
+    $("timerLabel").textContent="JUDGE'S TURN";
+  }else if(state.phase==="reveal"){renderReveal();}
+}
+function myNickname(){return state?.players.find(p=>p.id===myId)?.nickname;}
+function renderLobby(){
+  $("playerCount").textContent=state.players.length;
+  $("lobbyPlayers").innerHTML="";
+  state.players.forEach((p,i)=>{const row=document.createElement("div");row.className="player";const av=document.createElement("div");av.className="avatar";av.textContent=emoji[i%emoji.length];const info=document.createElement("div");const strong=document.createElement("strong");strong.textContent=p.nickname;const small=document.createElement("small");small.textContent=p.id===myId?"That's you!":p.connected?"Ready to play":"Reconnecting…";info.append(strong,small);row.append(av,info);if(p.isHost){const tag=document.createElement("span");tag.className="host-tag";tag.textContent="HOST";row.append(tag)}$("lobbyPlayers").append(row)});
+  $("startBtn").disabled=state.players.length<2||!isHost();
+  $("startBtn").textContent=state.players.length<2?"Waiting for one more player…":"Start the silliness →";
+  $("hostControls").classList.toggle("hidden",!isHost());$("guestNotice").classList.toggle("hidden",isHost());
+  $("lobbyNotice").textContent=isHost()?"Share the code, wait for 2–8 players, then start whenever you're ready.": "You're in! The host will start the game soon.";
+}
+function renderHand(){
+  if(!$("handCards"))return;$("handCards").innerHTML="";
+  hand.forEach((card,i)=>{const b=document.createElement("button");b.className="answer-card"+(selectedCard===card?" selected":"");b.textContent=card;b.disabled=!!(state&&state.submissions.some(s=>s.id===myId));b.onclick=()=>{selectedCard=card;renderHand();$("submitBtn").disabled=false};$("handCards").append(b)});
+}
+$("submitBtn").onclick=()=>{if(!selectedCard)return;socket.emit("submitCard",{code:roomCode,answer:selectedCard});$("submitBtn").disabled=true;selectedCard=null;};
+function renderLiveSubmissions(){
+  if(!state)return;
+  $("submissionCount").textContent=`${state.submittedCount} / ${state.expectedCount}`;
+  $("liveSubmissions").innerHTML="";
+  state.submissions.forEach((s,i)=>{const row=document.createElement("div");row.className="submission";const em=document.createElement("div");em.className="emoji";em.textContent=emoji[i%emoji.length];const a=document.createElement("div");a.className="answer";a.textContent=s.answer;row.append(em,a);$("liveSubmissions").append(row)});
+}
+function renderReveal(){
+  $("revealPanel").classList.remove("hidden");$("submitPanel").classList.add("hidden");$("waitingPanel").classList.add("hidden");$("judgePanel").classList.add("hidden");
+  const w=state.winner;
+  $("winnerBanner").innerHTML="";
+  const big=document.createElement("div");big.className="big";big.textContent=w?(w.isHouse?"🤖":"🎉"):"🫶";
+  const h=document.createElement("h3");h.textContent=w?(w.isHouse?"The robot's answer wins!":`${w.nickname} wins this round!`):"No cards this time!";
+  const p=document.createElement("p");p.textContent=w?`“${w.answer}”`: "The silly timer got us. Let's try another round.";
+  $("winnerBanner").append(big,h,p);
+  renderScoreRows($("scoreboard"),state.scoreboard||[]);
+  $("nextBtn").classList.toggle("hidden",!isHost());$("endBtn").classList.toggle("hidden",!isHost()||state.mode!=="custom");
+  $("autoNextNote").classList.toggle("hidden",isHost());
+  if(state.mode!=="custom"&&state.roundNumber>=state.maxRounds){$("nextBtn").textContent="See final results →";}else $("nextBtn").textContent="Next round →";
+}
+function renderScoreRows(el,rows){
+  el.innerHTML="";
+  rows.forEach((p,i)=>{const row=document.createElement("div");row.className="score-row";const rank=document.createElement("div");rank.className="rank";rank.textContent=["🥇","🥈","🥉"][i]||p.rank;const name=document.createElement("div");name.className="score-name";name.textContent=p.nickname+(p.id===myId?" (you)":"");const points=document.createElement("div");points.className="score-points";points.textContent=p.score+" pt"+(p.score===1?"":"s");row.append(rank,name,points);el.append(row)});
+}
+function renderFinished(){
+  $("finishedPanel").classList.remove("hidden");$("promptText").textContent="And the silly winner is…";
+  const rows=state.scoreboard||[];const top=rows[0];$("finalMessage").textContent=top?`${top.nickname} takes the crown with ${top.score} point${top.score===1?"":"s"}! Everyone brought excellent nonsense.`:"Thanks for playing!";
+  renderScoreRows($("finalScoreboard"),rows);
+}
+</script>
+</body>
+</html>
